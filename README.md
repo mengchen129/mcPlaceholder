@@ -5,8 +5,8 @@ HTML5 placeholder compatible with old IE
 jQuery
 
 ### usage
-<code>
+```javascript
 $(function() {
 	$(document.body).mcPlaceholder();
 });
-</code>
+```
