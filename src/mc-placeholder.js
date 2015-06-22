@@ -52,7 +52,6 @@
                 var overLineHeight = overHeight + "px";
                 var overTextIndent = parseInt($input.css("padding-left")) + "px";
                 var overFontSize = $input.css("font-size");
-                var overBackgroundColor = $input.css("background-color");
                 var overMarginLeft = -(overWidth + inputBorderRightWidth) + "px";
                 var overMarginTop = inputBorderTopWidth + "px";
                 var overAlign = $input.css("text-align");
@@ -64,7 +63,7 @@
                     "line-height": overLineHeight,
                     "text-indent": overTextIndent,
                     "font-size": overFontSize,
-                    "background-color": overBackgroundColor,
+                    "background": "transparent",
                     position: "absolute",
                     "margin-left": overMarginLeft,
                     "margin-top": overMarginTop,
