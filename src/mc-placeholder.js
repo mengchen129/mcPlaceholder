@@ -4,6 +4,10 @@
 (function($) {
     "use strict";
 
+    if (!$) {
+        throw new Error("Please include jQuery first.");
+    }
+
     /**
      * check placeholder support
      * Note: IE10+ supports placeholder
@@ -34,8 +38,8 @@
                     return;
                 }
 
-                // create a div similar to the input element
-                var $overDiv = $("<div></div>");
+                // create a span overlay the input element
+                var $overDiv = $("<span></span>");
 
                 var inputBorderLeftWidth = parseInt($input.css("border-left-width"));
                 var inputBorderRightWidth = parseInt($input.css("border-right-width"));
@@ -46,11 +50,12 @@
                 var overWidth = $input.get(0).offsetWidth - inputBorderLeftWidth - inputBorderRightWidth;
                 var overHeight = $input.get(0).offsetHeight - inputBorderTopWidth - inputBorderBottomWidth;
                 var overLineHeight = overHeight + "px";
-                var overTextIndent = parseInt($input.css("padding-left")) - 2 + "px";
+                var overTextIndent = parseInt($input.css("padding-left")) + "px";
                 var overFontSize = $input.css("font-size");
                 var overBackgroundColor = $input.css("background-color");
-                var overLeft = $input.offset().left + inputBorderLeftWidth + "px";
-                var overTop = $input.offset().top + inputBorderTopWidth + "px";
+                var overMarginLeft = -(overWidth + inputBorderRightWidth) + "px";
+                var overMarginTop = inputBorderTopWidth + "px";
+                var overAlign = $input.css("text-align");
 
                 $overDiv.text(placeholder).css({
                     color: overColor,
@@ -61,8 +66,9 @@
                     "font-size": overFontSize,
                     "background-color": overBackgroundColor,
                     position: "absolute",
-                    left: overLeft,
-                    top: overTop
+                    "margin-left": overMarginLeft,
+                    "margin-top": overMarginTop,
+                    "text-align": overAlign
                 });
 
                 $input.after($overDiv);
