@@ -42,18 +42,14 @@
                 var $overDiv = $("<span></span>");
 
                 var inputBorderLeftWidth = parseInt($input.css("border-left-width"));
-                var inputBorderRightWidth = parseInt($input.css("border-right-width"));
-                var inputBorderTopWidth = parseInt($input.css("border-top-width"));
-                var inputBorderBottomWidth = parseInt($input.css("border-bottom-width"));
 
                 var overColor = defaults.placeholderColor;
-                var overWidth = $input.get(0).offsetWidth - inputBorderLeftWidth - inputBorderRightWidth;
-                var overHeight = $input.get(0).offsetHeight - inputBorderTopWidth - inputBorderBottomWidth;
+                var overWidth = $input.get(0).offsetWidth;
+                var overHeight = $input.get(0).offsetHeight;
                 var overLineHeight = overHeight + "px";
-                var overTextIndent = parseInt($input.css("padding-left")) + "px";
+                var overTextIndent = inputBorderLeftWidth + parseInt($input.css("padding-left")) + "px";
                 var overFontSize = $input.css("font-size");
-                var overMarginLeft = -(overWidth + inputBorderRightWidth) + "px";
-                var overMarginTop = inputBorderTopWidth + "px";
+                var overMarginLeft = -overWidth + "px";
                 var overAlign = $input.css("text-align");
 
                 $overDiv.text(placeholder).css({
@@ -66,7 +62,6 @@
                     "background": "transparent",
                     position: "absolute",
                     "margin-left": overMarginLeft,
-                    "margin-top": overMarginTop,
                     "text-align": overAlign
                 });
 
@@ -74,7 +69,7 @@
 
                 $overDiv.bind("mousedown", function() {
                     $overDiv.hide();
-                    $(this).prev().focus();
+                    $input.focus();
                 });
 
                 $input.bind("focus", function() {
