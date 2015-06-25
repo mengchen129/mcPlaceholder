@@ -1,6 +1,12 @@
 /**
- * Created by mengchen on 2015/6/19.
+ * mcPlaceholder
+ * HTML5 placeholder compatible with old IE (7/8/9)
+ *
+ * Anthor: mengchen
+ * Collaborator: panfei
+ * Github: https://github.com/mengchen129/mcPlaceholder
  */
+
 (function($) {
     "use strict";
 
@@ -39,7 +45,7 @@
                 }
 
                 // create a span overlay the input element
-                var $overDiv = $("<span></span>");
+                var $overSpan = $("<span></span>");
 
                 var inputBorderLeftWidth = parseInt($input.css("border-left-width"));
 
@@ -52,7 +58,7 @@
                 var overMarginLeft = -overWidth + "px";
                 var overAlign = $input.css("text-align");
 
-                $overDiv.text(placeholder).css({
+                $overSpan.text(placeholder).css({
                     color: overColor,
                     width: overWidth,
                     height: overHeight,
@@ -65,18 +71,18 @@
                     "text-align": overAlign
                 });
 
-                $input.after($overDiv);
+                $input.after($overSpan);
 
-                $overDiv.bind("mousedown", function() {
-                    $overDiv.hide();
+                $overSpan.bind("mousedown", function() {
+                    $overSpan.hide();
                     $input.focus();
                 });
 
                 $input.bind("focus", function() {
-                    $overDiv.hide();
+                    $overSpan.hide();
                 }).bind("blur", function() {
                     if (!$(this).val()) {
-                        $overDiv.show();
+                        $overSpan.show();
                     }
                 });
             });
